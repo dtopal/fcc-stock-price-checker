@@ -23,6 +23,9 @@ module.exports = function(app) {
 
   MongoClient.connect(CONNECTION_STRING, function(err, db) {
     console.log("db connection successful");
+    //mongodb 3.x returns a client for callback, not db
+    var db = client.db('test');
+
     var collection = db.collection("stocks");
 
     var stockAPI = "https://repeated-alpaca.glitch.me/v1/stock/"; // .../stock/[symbol]/quote
